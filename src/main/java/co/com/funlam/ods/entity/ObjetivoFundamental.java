@@ -1,8 +1,12 @@
 package co.com.funlam.ods.entity;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ObjetivoFundamental {

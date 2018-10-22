@@ -1,11 +1,9 @@
 package co.com.funlam.ods.model.input;
 
-import co.com.funlam.ods.model.PercepcionObjetivoDTO;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+
+import co.com.funlam.ods.model.PercepcionObjetivoDTO;
 
 public class RegistroODSDTO {
 

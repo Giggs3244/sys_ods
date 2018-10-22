@@ -3,12 +3,16 @@ package co.com.funlam.ods.service;
 import co.com.funlam.ods.entity.*;
 import co.com.funlam.ods.model.input.RegistroODSDTO;
 import co.com.funlam.ods.repository.PersonaRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RepositoryCommandServiceImpl implements RepositoryCommandService {
 
+    private final Logger logger = LoggerFactory.getLogger(RepositoryCommandServiceImpl.class);
     private final PersonaRepository personaRepository;
 
     @Autowired
@@ -48,5 +52,6 @@ public class RepositoryCommandServiceImpl implements RepositoryCommandService {
         persona.setNivelEducacion(nivelEducacion);
 
         personaRepository.save(persona);
+        logger.debug("saved persona {}", persona);
     }
 }

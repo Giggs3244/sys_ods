@@ -1,15 +1,12 @@
 package co.com.funlam.ods;
 
-import static org.springframework.http.MediaType.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
-import co.com.funlam.ods.model.input.RegistroODSDTO;
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,12 +16,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.Date;
+import co.com.funlam.ods.model.input.RegistroODSDTO;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -63,10 +59,9 @@ public class OdsControllerTest {
         String request = objectMapper.writeValueAsString(personaDto);
 
         ResultActions resultActions = this.mvc
-                .perform(post("/api/personas").contentType(APPLICATION_JSON).content(request)).andExpect(status().isOk());
+                .perform(post("/api/personas").contentType(MediaType.APPLICATION_JSON).content(request))
+                .andExpect(status().isOk());
         resultActions.andDo(print());
     }
 
 }
-
-

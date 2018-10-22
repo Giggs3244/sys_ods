@@ -1,6 +1,12 @@
 package co.com.funlam.ods.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "DEPARTAMENTO")
@@ -16,8 +22,8 @@ public class Departamento {
     @Column(name = "CODIGO", nullable = false, length = 255)
     private String codigo;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "IDINDICEDLLOHUMANO", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IDINDICEDLLOHUMANO", referencedColumnName = "IDINDICEDLLOHUMANO")
     private IndiceDesarrolloHumano indiceDesarrolloHumano;
 
     public Long getIdDepartamento() {

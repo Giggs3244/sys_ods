@@ -1,9 +1,17 @@
 package co.com.funlam.ods.entity;
 
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @Table(name = "PERSONA")
@@ -30,20 +38,20 @@ public class Persona {
     @Column(name = "SEXO", nullable = false, length = 10)
     private String sexo;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "IDTIPOID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IDTIPOID", referencedColumnName = "IDTIPOID")
     private TipoIdentificacion tipoIdentificacion;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "IDEDUCACION", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IDEDUCACION", referencedColumnName = "IDEDUCACION")
     private NivelEducacion nivelEducacion;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "IDCIUDAD", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IDCIUDAD", referencedColumnName = "IDCIUDAD")
     private Ciudad ciudad;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "IDDEPARTAMENTO", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IDDEPARTAMENTO", referencedColumnName = "IDDPTO")
     private Departamento departamento;
 
     public Long getIdPersona() {
@@ -125,4 +133,11 @@ public class Persona {
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
     }
+
+    @Override
+    public String toString() {
+        return "Persona [idPersona=" + idPersona + ", identificacion=" + identificacion + ", nombres=" + nombres
+                + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento + ", sexo=" + sexo + "]";
+    }
+
 }
