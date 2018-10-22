@@ -2,13 +2,14 @@ package co.com.funlam.ods.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class ObjetivoFundamental {
 
     @Id
     private Long idObjetivoFundamental;
-    private LocalDateTime fechaRegistro;
+    private Date fechaRegistro;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idPersona", referencedColumnName = "idPersona")
@@ -26,11 +27,11 @@ public class ObjetivoFundamental {
         this.idObjetivoFundamental = idObjetivoFundamental;
     }
 
-    public LocalDateTime getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 

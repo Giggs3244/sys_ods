@@ -3,39 +3,37 @@ package co.com.funlam.ods.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Persona {
 
     @Id
-    private
-    Long idPersona;
+    @TableGenerator(name = "Persona_Gen", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "Persona_Gen", initialValue = 1000, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "Persona_Gen")
+    private Long idPersona;
     private String identificacion;
     private String nombres;
     private String apellidos;
-    private LocalDate fechaNacimiento;
-    private LocalDateTime fechaRegistro;
+    private Date fechaNacimiento;
+    private Date fechaRegistro;
     private String sexo;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idTipoIdentificacion", nullable = false)
-    private
-    TipoIdentificacion tipoIdentificacion;
+    private TipoIdentificacion tipoIdentificacion;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idEducacion", nullable = false)
-    private
-    NivelEducacion nivelEducacion;
+    private NivelEducacion nivelEducacion;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idCiudad", nullable = false)
-    private
-    Ciudad ciudad;
+    private Ciudad ciudad;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idDepartamento", nullable = false)
-    private
-    Departamento departamento;
+    private Departamento departamento;
 
     public Long getIdPersona() {
         return idPersona;
@@ -69,19 +67,19 @@ public class Persona {
         this.apellidos = apellidos;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public LocalDateTime getFechaRegistro() {
+    public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+    public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 

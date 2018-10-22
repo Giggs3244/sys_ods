@@ -3,15 +3,21 @@ package co.com.funlam.ods.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "DEPARTAMENTO")
 public class Departamento {
 
     @Id
+    @Column(name = "IDDPTO")
     private Long idDepartamento;
+
+    @Column(name = "NOMBRE", nullable = false, length = 255)
     private String nombre;
+
+    @Column(name = "CODIGO", nullable = false, length = 255)
     private String codigo;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idIndiceDlloHumano", nullable = false)
+    @JoinColumn(name = "IDINDICEDLLOHUMANO", nullable = false)
     private IndiceDesarrolloHumano indiceDesarrolloHumano;
 
     public Long getIdDepartamento() {

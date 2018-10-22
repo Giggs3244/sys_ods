@@ -32,7 +32,7 @@ public class OdsApplication implements CommandLineRunner {
         TipoIdentificacion tipoId = new TipoIdentificacion();
         tipoId.setIdTipoIdentificacion(1L);
         tipoId.setValor("CC");
-        tipoId.setDescripcion("Cédula de Ciudadanía");
+        tipoId.setTexto("Cédula de Ciudadanía");
 
         log.info("Inserting data in DB.");
         tipoIdentificacionRepository.save(tipoId);

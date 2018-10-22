@@ -1,14 +1,19 @@
 package co.com.funlam.ods.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "NIVELEDUCACION")
 public class NivelEducacion {
 
     @Id
-    private
-    Long idEducacion;
+    @Column(name = "IDEDUCACION")
+    private Long idEducacion;
+
+    @Column(name = "TITULO", nullable = false, length = 255)
     private String titulo;
 
     public Long getIdEducacion() {

@@ -1,16 +1,23 @@
 package co.com.funlam.ods.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TIPOIDENTIFICACION")
 public class TipoIdentificacion {
 
     @Id
-    private
-    Long idTipoIdentificacion;
+    @Column(name = "IDTIPOID")
+    private Long idTipoIdentificacion;
+
+    @Column(name = "VALOR", nullable = false, length = 255)
     private String valor;
-    private String descripcion;
+
+    @Column(name = "TEXTO", nullable = false, length = 255)
+    private String texto;
 
     public Long getIdTipoIdentificacion() {
         return idTipoIdentificacion;
@@ -28,11 +35,11 @@ public class TipoIdentificacion {
         this.valor = valor;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getTexto() {
+        return texto;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 }
