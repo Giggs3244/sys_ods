@@ -1,32 +1,35 @@
 package co.com.funlam.ods.controller;
 
-import co.com.funlam.ods.model.input.RegistroODSRequest;
-import co.com.funlam.ods.service.RepositoryService;
+import co.com.funlam.ods.model.input.RegistroODSDTO;
+import co.com.funlam.ods.service.RepositoryCommandService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping(value = "/api")
 @RestController
-public class OdsController {
+public class OdsController extends BaseController {
 
     private Logger logger = LoggerFactory.getLogger("OdsController");
-    private final RepositoryService repositoryService;
+    private final RepositoryCommandService repositoryCommandService;
 
     @Autowired
-    public OdsController(RepositoryService repositoryService) {
-        this.repositoryService = repositoryService;
+    public OdsController(RepositoryCommandService repositoryCommandService) {
+        this.repositoryCommandService = repositoryCommandService;
     }
 
-    @PostMapping()
-    public ResponseEntity crearRegistroODS(@RequestBody RegistroODSRequest registroODSRequest) {
-
+    @PostMapping(name = "registro")
+    public ResponseEntity crearRegistroODS(@RequestBody RegistroODSDTO registroODSDTO) {
         return null;
+    }
+
+    @PostMapping(name = "personas")
+    public void savePersona(@RequestBody RegistroODSDTO registroODSDTO) {
+        logger.debug("savePersona registroODSDTO", registroODSDTO);
+        repositoryCommandService.savePersona(registroODSDTO);
     }
 
 }

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
-public class RegistroODSRequest {
+public class RegistroODSDTO {
 
     private String identificacion;
     private String nombres;

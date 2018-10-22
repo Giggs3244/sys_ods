@@ -6,33 +6,44 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
+@Table(name = "PERSONA")
 public class Persona {
 
     @Id
     @TableGenerator(name = "Persona_Gen", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "Persona_Gen", initialValue = 1000, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "Persona_Gen")
+    @Column(name = "IDPERSONA")
     private Long idPersona;
+
+    @Column(name = "IDENTIFICACION", nullable = false, length = 15)
     private String identificacion;
+
+    @Column(name = "NOMBRES", nullable = false, length = 60)
     private String nombres;
+
+    @Column(name = "APELLIDOS", nullable = false, length = 60)
     private String apellidos;
+
+    @Column(name = "FECHANACIMIENTO", nullable = false, length = 7)
     private Date fechaNacimiento;
-    private Date fechaRegistro;
+
+    @Column(name = "SEXO", nullable = false, length = 10)
     private String sexo;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idTipoIdentificacion", nullable = false)
+    @JoinColumn(name = "IDTIPOID", nullable = false)
     private TipoIdentificacion tipoIdentificacion;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idEducacion", nullable = false)
+    @JoinColumn(name = "IDEDUCACION", nullable = false)
     private NivelEducacion nivelEducacion;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idCiudad", nullable = false)
+    @JoinColumn(name = "IDCIUDAD", nullable = false)
     private Ciudad ciudad;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idDepartamento", nullable = false)
+    @JoinColumn(name = "IDDEPARTAMENTO", nullable = false)
     private Departamento departamento;
 
     public Long getIdPersona() {
@@ -73,14 +84,6 @@ public class Persona {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
     }
 
     public String getSexo() {
