@@ -1,7 +1,9 @@
 package co.com.funlam.ods.entity;
 
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -53,6 +56,9 @@ public class Persona {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IDDEPARTAMENTO", referencedColumnName = "IDDPTO")
     private Departamento departamento;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private Set<ObjetivoFundamental> objetivosFundamentales;
 
     public Long getIdPersona() {
         return idPersona;
@@ -132,6 +138,14 @@ public class Persona {
 
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
+    }
+
+    public Set<ObjetivoFundamental> getObjetivosFundamentales() {
+        return objetivosFundamentales;
+    }
+
+    public void setObjetivosFundamentales(Set<ObjetivoFundamental> objetivosFundamentales) {
+        this.objetivosFundamentales = objetivosFundamentales;
     }
 
     @Override

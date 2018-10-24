@@ -1,27 +1,33 @@
 package co.com.funlam.ods.entity;
 
-import java.util.Date;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
+@Table(name = "OBJETIVOFUNDAMENTAL")
 public class ObjetivoFundamental {
 
     @Id
+    @TableGenerator(name = "ObjetivoFundamental_Gen", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "ObjetivoFundamental_Gen", initialValue = 1000, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.TABLE, generator = "ObjetivoFundamental_Gen")
+    @Column(name = "IDOBJETIVOFUNDAMENTAL")
     private Long idObjetivoFundamental;
-    private Date fechaRegistro;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idPersona", referencedColumnName = "idPersona")
-    private Persona persona;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idObjetivo", referencedColumnName = "idObjetivo")
+    @JoinColumn(name = "IDOBJETIVO", referencedColumnName = "IDOBJETIVO")
     private Objetivo objetivo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IDPERSONA", referencedColumnName = "IDPERSONA")
+    private Persona persona;
 
     public Long getIdObjetivoFundamental() {
         return idObjetivoFundamental;
@@ -31,12 +37,12 @@ public class ObjetivoFundamental {
         this.idObjetivoFundamental = idObjetivoFundamental;
     }
 
-    public Date getFechaRegistro() {
-        return fechaRegistro;
+    public Objetivo getObjetivo() {
+        return objetivo;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+    public void setObjetivo(Objetivo objetivo) {
+        this.objetivo = objetivo;
     }
 
     public Persona getPersona() {
@@ -47,11 +53,4 @@ public class ObjetivoFundamental {
         this.persona = persona;
     }
 
-    public Objetivo getObjetivo() {
-        return objetivo;
-    }
-
-    public void setObjetivo(Objetivo objetivo) {
-        this.objetivo = objetivo;
-    }
 }
