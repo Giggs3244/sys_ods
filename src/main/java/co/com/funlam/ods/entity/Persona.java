@@ -57,7 +57,7 @@ public class Persona {
     @JoinColumn(name = "IDDEPARTAMENTO", referencedColumnName = "IDDPTO")
     private Departamento departamento;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "persona", cascade = CascadeType.PERSIST)
     private Set<ObjetivoFundamental> objetivosFundamentales;
 
     public Long getIdPersona() {

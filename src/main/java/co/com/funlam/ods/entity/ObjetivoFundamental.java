@@ -53,4 +53,9 @@ public class ObjetivoFundamental {
         this.persona = persona;
     }
 
+    @Override
+    public String toString() {
+        return "ObjetivoFundamental [idObjetivoFundamental=" + idObjetivoFundamental + "]";
+    }
+
 }

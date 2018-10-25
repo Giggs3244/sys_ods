@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import co.com.funlam.ods.entity.Ciudad;
 import co.com.funlam.ods.entity.Departamento;
 import co.com.funlam.ods.entity.NivelEducacion;
+import co.com.funlam.ods.entity.Objetivo;
 import co.com.funlam.ods.entity.ObjetivoFundamental;
 import co.com.funlam.ods.entity.Persona;
 import co.com.funlam.ods.entity.TipoIdentificacion;
@@ -58,8 +59,13 @@ public class RepositoryCommandServiceImpl implements RepositoryCommandService {
         Set<ObjetivoFundamental> objetivosFundamentales = new HashSet<>();
 
         for (Long idObjetivo : registro.getIdObjetivosFundamentales()) {
+
+            Objetivo objetivo = new Objetivo();
+            objetivo.setIdObjetivo(idObjetivo);
+
             ObjetivoFundamental objetivoFundamental = new ObjetivoFundamental();
-            objetivoFundamental.setIdObjetivoFundamental(idObjetivo);
+            objetivoFundamental.setObjetivo(objetivo);
+            objetivoFundamental.setPersona(persona);
 
             objetivosFundamentales.add(objetivoFundamental);
         }
