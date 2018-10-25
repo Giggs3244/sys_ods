@@ -12,13 +12,13 @@ import co.com.funlam.ods.projection.VotosObjetivo;
 @Repository
 public interface PersonaRepository extends JpaRepository<Persona, Long> {
 
-    @Query(value = "SELECT p.SEXO AS titulo, COUNT(*) AS cantidadVotos FROM PERSONA p GROUP BY p.SEXO", nativeQuery = true)
+    @Query(value = "SELECT p.SEXO AS name, COUNT(*) AS value FROM PERSONA p GROUP BY p.SEXO", nativeQuery = true)
     public List<VotosObjetivo> getCantidadSexo();
 
-    @Query(value = "SELECT ne.TITULO AS titulo, COUNT(*) AS cantidadVotos FROM PERSONA p JOIN NIVELEDUCACION ne ON p.IDEDUCACION = ne.IDEDUCACION GROUP BY ne.TITULO", nativeQuery = true)
+    @Query(value = "SELECT ne.TITULO AS name, COUNT(*) AS value FROM PERSONA p JOIN NIVELEDUCACION ne ON p.IDEDUCACION = ne.IDEDUCACION GROUP BY ne.TITULO", nativeQuery = true)
     public List<VotosObjetivo> getCantidadNivelEducacion();
 
-    @Query(value = "SELECT idh.GRADO AS titulo, COUNT(*) AS cantidadVotos FROM PERSONA p JOIN CIUDAD c ON p.IDCIUDAD = c.IDCIUDAD JOIN INDICEDLLOHUMANO idh ON idh.IDINDICEDLLOHUMANO = c.IDINDICEDLLOHUMANO GROUP BY idh.GRADO", nativeQuery = true)
+    @Query(value = "SELECT idh.GRADO AS name, COUNT(*) AS value FROM PERSONA p JOIN CIUDAD c ON p.IDCIUDAD = c.IDCIUDAD JOIN INDICEDLLOHUMANO idh ON idh.IDINDICEDLLOHUMANO = c.IDINDICEDLLOHUMANO GROUP BY idh.GRADO", nativeQuery = true)
     public List<VotosObjetivo> getCantidadIDH();
 
 }

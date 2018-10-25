@@ -37,8 +37,8 @@ public class ObjetivoRepositoryTest {
 
         logger.debug("getVotosObjetivos");
         for (VotosObjetivo votoObjetivo : votosByObjetivo) {
-            logger.debug("Titulo del objetivo {} cantidad de votos {}", votoObjetivo.getTitulo(),
-                    votoObjetivo.getCantidadVotos());
+            logger.debug("Titulo del objetivo {} cantidad de votos {}", votoObjetivo.getName(),
+                    votoObjetivo.getValue());
         }
 
     }
@@ -50,8 +50,8 @@ public class ObjetivoRepositoryTest {
 
         logger.debug("getVotosObjetivosByNivelEducacion");
         for (VotosObjetivo votoObjetivo : votosByObjetivo) {
-            logger.debug("Titulo del objetivo {} cantidad de votos {}", votoObjetivo.getTitulo(),
-                    votoObjetivo.getCantidadVotos());
+            logger.debug("Titulo del objetivo {} cantidad de votos {}", votoObjetivo.getName(),
+                    votoObjetivo.getValue());
         }
 
     }
@@ -63,8 +63,8 @@ public class ObjetivoRepositoryTest {
 
         logger.debug("getVotosObjetivosBySexo");
         for (VotosObjetivo votoObjetivo : votosByObjetivo) {
-            logger.debug("Titulo del objetivo {} cantidad de votos {}", votoObjetivo.getTitulo(),
-                    votoObjetivo.getCantidadVotos());
+            logger.debug("Titulo del objetivo {} cantidad de votos {}", votoObjetivo.getName(),
+                    votoObjetivo.getValue());
         }
 
     }
@@ -76,8 +76,8 @@ public class ObjetivoRepositoryTest {
 
         logger.debug("getVotosObjetivosByEdad");
         for (VotosObjetivo votoObjetivo : votosByObjetivo) {
-            logger.debug("Titulo del objetivo {} cantidad de votos {}", votoObjetivo.getTitulo(),
-                    votoObjetivo.getCantidadVotos());
+            logger.debug("Titulo del objetivo {} cantidad de votos {}", votoObjetivo.getName(),
+                    votoObjetivo.getValue());
         }
 
     }
@@ -99,7 +99,7 @@ public class ObjetivoRepositoryTest {
 
         logger.debug("getCantidadSexo");
         for (VotosObjetivo votoObjetivo : votosByObjetivo) {
-            logger.debug("Sexo {} cantidad de votos {}", votoObjetivo.getTitulo(), votoObjetivo.getCantidadVotos());
+            logger.debug("Sexo {} cantidad de votos {}", votoObjetivo.getName(), votoObjetivo.getValue());
         }
 
     }
@@ -111,8 +111,7 @@ public class ObjetivoRepositoryTest {
 
         logger.debug("getCantidadNivelEducacion");
         for (VotosObjetivo votoObjetivo : votosByObjetivo) {
-            logger.debug("Nivel Educacion {} cantidad de votos {}", votoObjetivo.getTitulo(),
-                    votoObjetivo.getCantidadVotos());
+            logger.debug("Nivel Educacion {} cantidad de votos {}", votoObjetivo.getName(), votoObjetivo.getValue());
         }
 
     }
@@ -124,8 +123,8 @@ public class ObjetivoRepositoryTest {
 
         logger.debug("getCantidadIDH");
         for (VotosObjetivo votoObjetivo : votosByObjetivo) {
-            logger.debug("Indice desarrollo humano {} cantidad de votos {}", votoObjetivo.getTitulo(),
-                    votoObjetivo.getCantidadVotos());
+            logger.debug("Indice desarrollo humano {} cantidad de votos {}", votoObjetivo.getName(),
+                    votoObjetivo.getValue());
         }
 
     }

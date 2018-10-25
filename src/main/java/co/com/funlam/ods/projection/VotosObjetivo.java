@@ -2,8 +2,8 @@ package co.com.funlam.ods.projection;
 
 public interface VotosObjetivo {
 
-    String getTitulo();
+    String getName();
 
-    Integer getCantidadVotos();
+    Integer getValue();
 
 }
