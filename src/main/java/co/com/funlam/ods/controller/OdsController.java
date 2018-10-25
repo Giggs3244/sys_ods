@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import co.com.funlam.ods.projection.VotosObjetivo;
 import co.com.funlam.ods.service.RepositoryCommandService;
 import co.com.funlam.ods.service.RepositoryQueryService;
 
+@CrossOrigin
 @RestController
 public class OdsController extends BaseController {
 
@@ -65,6 +67,12 @@ public class OdsController extends BaseController {
     public List<co.com.funlam.ods.projection.Objetivo> getObjetivos() {
         logger.debug("getObjetivos {}", 0);
         return repositoryQueryService.getObjetivos();
+    }
+
+    @GetMapping(value = "/cantidad-votos")
+    public Integer getCantidadVotosObjetivos() {
+        logger.debug("getCantidadVotosObjetivos {}", 0);
+        return repositoryQueryService.getCantidadVotosObjetivos();
     }
 
     @GetMapping(value = "/cantidad-sexo")
