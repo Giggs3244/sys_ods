@@ -1,5 +1,6 @@
 package co.com.funlam.ods;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -80,6 +81,17 @@ public class OdsControllerTest {
                 .perform(post("/api/personas").contentType(MediaType.APPLICATION_JSON).content(request))
                 .andExpect(status().isOk());
         resultActions.andDo(print());
+    }
+
+    @Test
+    public void getObjetivosTest() throws Exception {
+
+        ResultActions resultActions = this.mvc.perform(get("/api/objetivos").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+        String response = resultActions.andReturn().getResponse().getContentAsString();
+        logger.debug("getObjetivosTest {}", response);
+
     }
 
 }
