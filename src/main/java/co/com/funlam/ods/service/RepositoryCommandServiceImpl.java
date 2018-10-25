@@ -1,13 +1,21 @@
 package co.com.funlam.ods.service;
 
-import co.com.funlam.ods.entity.*;
-import co.com.funlam.ods.model.input.RegistroODSDTO;
-import co.com.funlam.ods.repository.PersonaRepository;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import co.com.funlam.ods.entity.Ciudad;
+import co.com.funlam.ods.entity.Departamento;
+import co.com.funlam.ods.entity.NivelEducacion;
+import co.com.funlam.ods.entity.ObjetivoFundamental;
+import co.com.funlam.ods.entity.Persona;
+import co.com.funlam.ods.entity.TipoIdentificacion;
+import co.com.funlam.ods.model.input.RegistroODSDTO;
+import co.com.funlam.ods.repository.PersonaRepository;
 
 @Service
 public class RepositoryCommandServiceImpl implements RepositoryCommandService {
@@ -21,37 +29,48 @@ public class RepositoryCommandServiceImpl implements RepositoryCommandService {
     }
 
     @Override
-    public void crearRegistroODS(RegistroODSDTO registroODSDTO) {
+    public void crearRegistroODS(RegistroODSDTO registro) {
 
-    }
-
-    @Override
-    public void savePersona(RegistroODSDTO registroODSDTO) {
         Persona persona = new Persona();
 
-        persona.setNombres(registroODSDTO.getNombres());
-        persona.setApellidos(registroODSDTO.getApellidos());
-        persona.setIdentificacion(registroODSDTO.getIdentificacion());
-        persona.setSexo(registroODSDTO.getSexo());
-        persona.setFechaNacimiento(registroODSDTO.getFechaNacimiento());
+        persona.setNombres(registro.getNombres());
+        persona.setApellidos(registro.getApellidos());
+        persona.setIdentificacion(registro.getIdentificacion());
+        persona.setSexo(registro.getSexo());
+        persona.setFechaNacimiento(registro.getFechaNacimiento());
 
         Departamento departamento = new Departamento();
-        departamento.setIdDepartamento(registroODSDTO.getIdDepartamento());
+        departamento.setIdDepartamento(registro.getIdDepartamento());
         persona.setDepartamento(departamento);
 
         Ciudad ciudad = new Ciudad();
-        ciudad.setIdCiudad(registroODSDTO.getIdCiudad());
+        ciudad.setIdCiudad(registro.getIdCiudad());
         persona.setCiudad(ciudad);
 
         TipoIdentificacion tipoId = new TipoIdentificacion();
-        tipoId.setIdTipoIdentificacion(registroODSDTO.getIdTipoIdentificacion());
+        tipoId.setIdTipoIdentificacion(registro.getIdTipoIdentificacion());
         persona.setTipoIdentificacion(tipoId);
 
         NivelEducacion nivelEducacion = new NivelEducacion();
-        nivelEducacion.setIdEducacion(registroODSDTO.getIdEducacion());
+        nivelEducacion.setIdEducacion(registro.getIdEducacion());
         persona.setNivelEducacion(nivelEducacion);
 
-        personaRepository.save(persona);
+        Set<ObjetivoFundamental> objetivosFundamentales = new HashSet<>();
+
+        for (Long idObjetivo : registro.getIdObjetivosFundamentales()) {
+            ObjetivoFundamental objetivoFundamental = new ObjetivoFundamental();
+            objetivoFundamental.setIdObjetivoFundamental(idObjetivo);
+
+            objetivosFundamentales.add(objetivoFundamental);
+        }
+
+        persona.setObjetivosFundamentales(objetivosFundamentales);
+
         logger.debug("saved persona {}", persona);
+        logger.debug("saved objetivosFundamentales {}", objetivosFundamentales);
+
+        personaRepository.save(persona);
+
     }
+
 }

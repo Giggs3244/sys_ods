@@ -27,4 +27,7 @@ public interface ObjetivoRepository extends JpaRepository<Objetivo, Long> {
     @Query(value = "SELECT COUNT(o.IDOBJETIVOFUNDAMENTAL) AS cantidadVotos FROM OBJETIVOFUNDAMENTAL o", nativeQuery = true)
     public Integer getCantidadVotosObjetivos();
 
+    @Query(value = "SELECT o.IDOBJETIVO AS idObjetivo, o.TITULO AS titulo, o.DESCRIPCION AS descripcion FROM OBJETIVO o ORDER BY o.IDOBJETIVO", nativeQuery = true)
+    public List<co.com.funlam.ods.projection.Objetivo> getObjetivos();
+
 }

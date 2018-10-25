@@ -6,6 +6,4 @@ public interface RepositoryCommandService {
 
     public void crearRegistroODS(RegistroODSDTO registroODSDTO);
 
-    public void savePersona(RegistroODSDTO registroODSDTO);
-
 }
