@@ -26,6 +26,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.com.funlam.ods.model.ObjetivoEsencial;
+import co.com.funlam.ods.model.PersonaDTO;
 import co.com.funlam.ods.model.input.RegistroODSDTO;
 
 @RunWith(SpringRunner.class)
@@ -52,7 +53,9 @@ public class OdsControllerTest {
 
     @Test
     public void savePersonaTest() throws Exception {
-        RegistroODSDTO personaDto = new RegistroODSDTO();
+        PersonaDTO personaDto = new PersonaDTO();
+        RegistroODSDTO registroODSDTO = new RegistroODSDTO();
+
         personaDto.setNombres("BRYAN STEVENS");
         personaDto.setApellidos("BEDOYA ZAPATA");
         personaDto.setFechaNacimiento(new Date());
@@ -64,25 +67,25 @@ public class OdsControllerTest {
         personaDto.setIdCiudad(Long.valueOf(1));
         personaDto.setIdEducacion(Long.valueOf(6));
 
-        List<co.com.funlam.ods.projection.Objetivo> idObjetivosFundamentales = new ArrayList<>();
+        List<ObjetivoEsencial> idObjetivosFundamentales = new ArrayList<>();
 
         ObjetivoEsencial objetivoEsencial = new ObjetivoEsencial();
         objetivoEsencial.setIdObjetivo(Long.valueOf(1));
 
         ObjetivoEsencial objetivoEsencial1 = new ObjetivoEsencial();
-        objetivoEsencial.setIdObjetivo(Long.valueOf(4));
+        objetivoEsencial1.setIdObjetivo(Long.valueOf(4));
 
         ObjetivoEsencial objetivoEsencial2 = new ObjetivoEsencial();
-        objetivoEsencial.setIdObjetivo(Long.valueOf(5));
+        objetivoEsencial2.setIdObjetivo(Long.valueOf(5));
 
         ObjetivoEsencial objetivoEsencial3 = new ObjetivoEsencial();
-        objetivoEsencial.setIdObjetivo(Long.valueOf(6));
+        objetivoEsencial3.setIdObjetivo(Long.valueOf(6));
 
         ObjetivoEsencial objetivoEsencial4 = new ObjetivoEsencial();
-        objetivoEsencial.setIdObjetivo(Long.valueOf(7));
+        objetivoEsencial4.setIdObjetivo(Long.valueOf(7));
 
         ObjetivoEsencial objetivoEsencial5 = new ObjetivoEsencial();
-        objetivoEsencial.setIdObjetivo(Long.valueOf(17));
+        objetivoEsencial5.setIdObjetivo(Long.valueOf(15));
 
         idObjetivosFundamentales.add(objetivoEsencial);
         idObjetivosFundamentales.add(objetivoEsencial1);
@@ -91,9 +94,10 @@ public class OdsControllerTest {
         idObjetivosFundamentales.add(objetivoEsencial4);
         idObjetivosFundamentales.add(objetivoEsencial5);
 
-        personaDto.setObjetivos(idObjetivosFundamentales);
+        registroODSDTO.setPersona(personaDto);
+        registroODSDTO.setObjetivos(idObjetivosFundamentales);
 
-        String request = objectMapper.writeValueAsString(personaDto);
+        String request = objectMapper.writeValueAsString(registroODSDTO);
 
         logger.debug("request save persona {}", request);
 

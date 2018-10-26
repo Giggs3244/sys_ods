@@ -15,6 +15,7 @@ import co.com.funlam.ods.entity.Objetivo;
 import co.com.funlam.ods.entity.ObjetivoFundamental;
 import co.com.funlam.ods.entity.Persona;
 import co.com.funlam.ods.entity.TipoIdentificacion;
+import co.com.funlam.ods.model.ObjetivoEsencial;
 import co.com.funlam.ods.model.input.RegistroODSDTO;
 import co.com.funlam.ods.repository.PersonaRepository;
 
@@ -34,32 +35,32 @@ public class RepositoryCommandServiceImpl implements RepositoryCommandService {
 
         Persona persona = new Persona();
 
-        persona.setNombres(registro.getNombres());
-        persona.setApellidos(registro.getApellidos());
-        persona.setIdentificacion(registro.getIdentificacion());
-        persona.setSexo(registro.getSexo());
-        persona.setFechaNacimiento(registro.getFechaNacimiento());
+        persona.setNombres(registro.getPersona().getNombres());
+        persona.setApellidos(registro.getPersona().getApellidos());
+        persona.setIdentificacion(registro.getPersona().getIdentificacion());
+        persona.setSexo(registro.getPersona().getSexo());
+        persona.setFechaNacimiento(registro.getPersona().getFechaNacimiento());
 
         Departamento departamento = new Departamento();
-        departamento.setIdDepartamento(registro.getIdDepartamento());
+        departamento.setIdDepartamento(registro.getPersona().getIdDepartamento());
         persona.setDepartamento(departamento);
 
         Ciudad ciudad = new Ciudad();
-        ciudad.setIdCiudad(registro.getIdCiudad());
+        ciudad.setIdCiudad(registro.getPersona().getIdCiudad());
         persona.setCiudad(ciudad);
 
         TipoIdentificacion tipoId = new TipoIdentificacion();
-        tipoId.setIdTipoIdentificacion(registro.getIdTipoIdentificacion());
+        tipoId.setIdTipoIdentificacion(registro.getPersona().getIdTipoIdentificacion());
         persona.setTipoIdentificacion(tipoId);
 
         NivelEducacion nivelEducacion = new NivelEducacion();
-        nivelEducacion.setIdEducacion(registro.getIdEducacion());
+        nivelEducacion.setIdEducacion(registro.getPersona().getIdEducacion());
         persona.setNivelEducacion(nivelEducacion);
 
         Set<ObjetivoFundamental> objetivosFundamentales = new HashSet<>();
 
-        for (co.com.funlam.ods.projection.Objetivo objetivoFund : registro.getObjetivos()) {
-
+        for (ObjetivoEsencial objetivoFund : registro.getObjetivos()) {
+            logger.debug("objetivoFund {}", objetivoFund);
             Objetivo objetivo = new Objetivo();
             objetivo.setIdObjetivo(objetivoFund.getIdObjetivo());
 
