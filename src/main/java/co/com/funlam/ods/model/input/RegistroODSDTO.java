@@ -19,8 +19,7 @@ public class RegistroODSDTO {
     private Long idDepartamento;
 
     private List<PercepcionObjetivoDTO> percepcionesObjetivos;
-    private List<Long> idObjetivosFundamentales;
-
+    private List<co.com.funlam.ods.projection.Objetivo> objetivos;
 
     public String getIdentificacion() {
         return identificacion;
@@ -102,11 +101,11 @@ public class RegistroODSDTO {
         this.percepcionesObjetivos = percepcionesObjetivos;
     }
 
-    public List<Long> getIdObjetivosFundamentales() {
-        return idObjetivosFundamentales;
+    public List<co.com.funlam.ods.projection.Objetivo> getObjetivos() {
+        return objetivos;
     }
 
-    public void setIdObjetivosFundamentales(List<Long> idObjetivosFundamentales) {
-        this.idObjetivosFundamentales = idObjetivosFundamentales;
+    public void setObjetivos(List<co.com.funlam.ods.projection.Objetivo> objetivos) {
+        this.objetivos = objetivos;
     }
 }

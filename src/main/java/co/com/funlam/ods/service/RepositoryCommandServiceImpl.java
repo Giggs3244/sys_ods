@@ -58,10 +58,10 @@ public class RepositoryCommandServiceImpl implements RepositoryCommandService {
 
         Set<ObjetivoFundamental> objetivosFundamentales = new HashSet<>();
 
-        for (Long idObjetivo : registro.getIdObjetivosFundamentales()) {
+        for (co.com.funlam.ods.projection.Objetivo objetivoFund : registro.getObjetivos()) {
 
             Objetivo objetivo = new Objetivo();
-            objetivo.setIdObjetivo(idObjetivo);
+            objetivo.setIdObjetivo(objetivoFund.getIdObjetivo());
 
             ObjetivoFundamental objetivoFundamental = new ObjetivoFundamental();
             objetivoFundamental.setObjetivo(objetivo);

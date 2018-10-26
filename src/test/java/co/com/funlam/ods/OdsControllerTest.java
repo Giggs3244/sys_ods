@@ -25,6 +25,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import co.com.funlam.ods.model.ObjetivoEsencial;
 import co.com.funlam.ods.model.input.RegistroODSDTO;
 
 @RunWith(SpringRunner.class)
@@ -63,15 +64,34 @@ public class OdsControllerTest {
         personaDto.setIdCiudad(Long.valueOf(1));
         personaDto.setIdEducacion(Long.valueOf(6));
 
-        List<Long> idObjetivosFundamentales = new ArrayList<>();
-        idObjetivosFundamentales.add(Long.valueOf(1));
-        idObjetivosFundamentales.add(Long.valueOf(4));
-        idObjetivosFundamentales.add(Long.valueOf(5));
-        idObjetivosFundamentales.add(Long.valueOf(6));
-        idObjetivosFundamentales.add(Long.valueOf(7));
-        idObjetivosFundamentales.add(Long.valueOf(17));
+        List<co.com.funlam.ods.projection.Objetivo> idObjetivosFundamentales = new ArrayList<>();
 
-        personaDto.setIdObjetivosFundamentales(idObjetivosFundamentales);
+        ObjetivoEsencial objetivoEsencial = new ObjetivoEsencial();
+        objetivoEsencial.setIdObjetivo(Long.valueOf(1));
+
+        ObjetivoEsencial objetivoEsencial1 = new ObjetivoEsencial();
+        objetivoEsencial.setIdObjetivo(Long.valueOf(4));
+
+        ObjetivoEsencial objetivoEsencial2 = new ObjetivoEsencial();
+        objetivoEsencial.setIdObjetivo(Long.valueOf(5));
+
+        ObjetivoEsencial objetivoEsencial3 = new ObjetivoEsencial();
+        objetivoEsencial.setIdObjetivo(Long.valueOf(6));
+
+        ObjetivoEsencial objetivoEsencial4 = new ObjetivoEsencial();
+        objetivoEsencial.setIdObjetivo(Long.valueOf(7));
+
+        ObjetivoEsencial objetivoEsencial5 = new ObjetivoEsencial();
+        objetivoEsencial.setIdObjetivo(Long.valueOf(17));
+
+        idObjetivosFundamentales.add(objetivoEsencial);
+        idObjetivosFundamentales.add(objetivoEsencial1);
+        idObjetivosFundamentales.add(objetivoEsencial2);
+        idObjetivosFundamentales.add(objetivoEsencial3);
+        idObjetivosFundamentales.add(objetivoEsencial4);
+        idObjetivosFundamentales.add(objetivoEsencial5);
+
+        personaDto.setObjetivos(idObjetivosFundamentales);
 
         String request = objectMapper.writeValueAsString(personaDto);
 
